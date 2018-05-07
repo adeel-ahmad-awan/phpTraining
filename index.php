@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8">
     <title>form validation</title>
-    <?php     ini_set('file_uploads', 'on');  ?>
 
   </head>
   <body>
