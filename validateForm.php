@@ -5,7 +5,6 @@
     <title>result</title>
   </head>
   <body>
-
     <ul>
       <li>
         name: <?php echo $_POST['name']; ?>
@@ -19,7 +18,6 @@
       <li>
         gender: <?php echo $_POST['gender']; ?>
       </li>
-
       <?php
         if(isset($_POST['submit'])) {
           $file_name = $_FILES['image']['name'];
@@ -34,6 +32,5 @@
         }
       ?>
     </ul>
-
   </body>
 </html>
