@@ -11,9 +11,9 @@
     <form class="" action="validateForm.php" method="post" enctype="multipart/form-data">
 
 
-      name: <input type="text" name="username" placeholder="name" value=""><br>
-      email: <input type="email" name="useremail" placeholder="email" value=""><br>
-      password: <input type="password" name="userpass" placeholder="password" value=""><br>
+      name: <input type="text" name="name" placeholder="name" value=""><br>
+      email: <input type="email" name="email" placeholder="email" value=""><br>
+      password: <input type="password" name="password" placeholder="password" value=""><br>
       gender:
       <select name="gender">
         <option value="male">male</option>

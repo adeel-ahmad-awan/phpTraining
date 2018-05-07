@@ -8,31 +8,29 @@
 
     <ul>
       <li>
-        name: <?php echo $_REQUEST["username"]; ?>
+        name: <?php echo $_POST['name']; ?>
       </li>
       <li>
-        email: <?php echo $_REQUEST["useremail"]; ?>
+        email: <?php echo $_POST['email']; ?>
       </li>
       <li>
-        password: <?php echo $_REQUEST["userpass"]; ?>
+        password: <?php echo $_POST['password']; ?>
       </li>
       <li>
-        gender: <?php echo $_REQUEST["gender"]; ?>
+        gender: <?php echo $_POST['gender']; ?>
       </li>
 
       <?php
+        if(isset($_POST[''])) {
+          $file_name = $_FILES['image']['name'];
+          $default_file_location = $_FILES['image']['tmp_name'];
+          $file_extension = $_FILES['image']['type'];
+          $new_file_location = "upload/".$file_name. $file_extension;
 
-      if(isset($_POST["submit"])) {
-        $filename = $_FILES['image']['name'];
-        $filesize = $_FILES['image']['size'];
-        $filelocation = $_FILES['image']['tmp_name'];
-        $filetype = $_FILES['image']['type'];
-        $filestore = "upload/".$filename;
+          move_uploaded_file($default_file_location, $new_file_location);
 
-        move_uploaded_file($filelocation, $filestore);
-
-      }
-            ?>
+        }
+      ?>
 
 
     </ul>
