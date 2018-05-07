@@ -21,7 +21,7 @@
       </li>
 
       <?php
-        if(isset($_POST[''])) {
+        if(isset($_POST['submit'])) {
           $file_name = $_FILES['image']['name'];
           $default_file_location = $_FILES['image']['tmp_name'];
           $file_extension = $_FILES['image']['type'];
