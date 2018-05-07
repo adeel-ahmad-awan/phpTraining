@@ -25,7 +25,7 @@
           $file_name = $_FILES['image']['name'];
           $default_file_location = $_FILES['image']['tmp_name'];
           $file_extension = $_FILES['image']['type'];
-          $new_file_location = "upload/".$file_name. $file_extension;
+          $new_file_location = "upload/".$file_name. "." . $file_extension;
 
           move_uploaded_file($default_file_location, $new_file_location);
 
