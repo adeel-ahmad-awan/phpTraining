@@ -21,13 +21,13 @@
       <?php
         if(isset($_POST['submit'])) {
           $file_name = $_FILES['image']['name'];
-          $path = $_FILES['image']['tmp_name'];
-          $file_upload = 'upload/'.$file_name;
-          if (move_uploaded_file($path, $file_upload)) {
-            echo '<li> <img src=' .$file_upload. ' alt="" width="500px" > </li>';
+          $file = $_FILES['image']['tmp_name'];
+          $path_upload = 'upload/'.$file_name;
+          if (move_uploaded_file($file, $path_upload)) {
+            echo '<li> <img src=' .$path_upload. ' alt="" width="500px" > </li>';
           }
           else {
-            echo 'error';
+            echo '<li>error</li>';
           }
         }
       ?>
