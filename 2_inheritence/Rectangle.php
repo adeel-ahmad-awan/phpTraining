@@ -1,6 +1,6 @@
 <?php
 
-  require_once 'shape.php';
+  require_once 'Shape.php';
 
   /**
    * rectangle class for holding data and method for rectangle calculation
@@ -30,7 +30,7 @@
        /**
         * setter function for setting the length
         */
-      public function SetLength($length = 0)
+      public function setLength($length = 0)
        {
            $this->length = $length;
        }
@@ -38,7 +38,7 @@
        /**
         * setter function for setting the width
         */
-      public function SetWidth($width = 0)
+      public function setWidth($width = 0)
        {
            $this->width = $width;
        }
@@ -47,7 +47,7 @@
         * overridden abstract method
         * function for returning the value of area.
         */
-       public function GetArea()
+       public function getArea()
        {
            $this->area = $this->length * $this->width;
            return $this->area;

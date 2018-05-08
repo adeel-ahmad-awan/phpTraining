@@ -1,15 +1,15 @@
 <?php
 
-  require_once 'circle.php';
-  require_once 'rectangle.php';
+  require_once 'Circle.php';
+  require_once 'Rectangle.php';
 
   $circle = new Circle;
-  $circle->SetRadius(6);
-  echo 'area of circle: ' . $circle->GetArea() . '<br>';
+  $circle->setRadius(6);
+  echo 'area of circle: ' . $circle->getArea() . '<br>';
 
   $rectangle = new Rectangle;
-  $rectangle->SetLength(3);
-  $rectangle->SetWidth(9);
-  echo 'area of rectangle: ' . $rectangle->GetArea() . '<br>';
+  $rectangle->setLength(3);
+  $rectangle->setWidth(9);
+  echo 'area of rectangle: ' . $rectangle->getArea() . '<br>';
 
 ?>

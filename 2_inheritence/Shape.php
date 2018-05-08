@@ -21,7 +21,7 @@
     /**
      * abstract method which will be returning the area of shape
      */
-    abstract function GetArea();
+    abstract function getArea();
 
   }
 ?>

@@ -1,6 +1,6 @@
 <?php
 
-  require_once 'shape.php';
+  require_once 'Shape.php';
 
   /**
    * circle class for holding data and method for circle calculation
@@ -25,7 +25,7 @@
      /**
       * setter function for setting the radius
       */
-     public function SetRadius($radius = 0 )
+     public function setRadius($radius = 0 )
      {
        $this->radius = $radius;
      }
@@ -34,9 +34,9 @@
       * overridden abstract method
       * function for returning the value of area.
       */
-     public function GetArea()
+     public function getArea()
      {
-       $this->area = pow($this->radius, 2) * 3.14159;
+       $this->area = pow($this->radius, 2) * pi();
        return $this->area;
      }
    }
