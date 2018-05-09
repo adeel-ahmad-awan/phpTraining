@@ -18,9 +18,7 @@
     private $count;
 
    /**
-   * constructor to initilize the head pointer
-   * by default head and tail value would be null
-   * by default count value would be zero
+   * constructor to initilize the class variables
    */
     function __construct()
     {
@@ -30,10 +28,88 @@
     }
 
     /**
-    * function to add a node to head pointer
-    * if passed argument is not integer it will be not inserted and the function will instently return
+    * function to remove head node
+    * @returns boolean
     */
-    public function addNode($node_data_value)
+    private function removeHeadNode()
+    {
+      $return_value = false;
+      if ($this->head != null) {
+        $temp = $this->head;
+        $this->head = $this->head->getNextPointer();
+        $this->head->setPreviousPointer(null);
+        $temp->setNextPointer(null);
+        $temp = null;
+        $this->count--;
+        $return_value = true;
+      }
+      return $return_value;
+    } // end function removeHeadNode
+
+    /**
+    * function to remove tail node
+    * @returns boolean
+    */
+    private function removeTailNode()
+    {
+      $return_value = false;
+      if ($this->head == $this->tail) {
+        $this->tail = null;
+        $return_value = true;
+      } elseif ($this->tail != null) {
+        $temp = $this->tail->getPreviousPointer();
+        $temp2 = $temp->getNextPointer();
+        $temp2 = null;
+        $temp->setNextPointer(null);
+        $this->tail = $temp;
+        $this->count--;
+        $return_value = true;
+      }
+      return $return_value;
+    } // end function removeTailNode
+
+
+    /**
+    * function to remove node between head and tail
+    * @parameter Node $temp
+    * @returns boolean
+    */
+    private function removeInBetweenNode(&$temp)
+    {
+      $return_value = false;
+
+      if ($temp->getNextPointer() != null && $temp->getPreviousPointer() != null) {
+        $temp_previous_node = $temp->getPreviousPointer();
+        $temp_next_node = $temp->getNextPointer();
+        $temp = null;
+        $temp_previous_node->setNextPointer($temp_next_node);
+        $temp_next_node->setPreviousPointer($temp_previous_node);
+        $temp = $temp_previous_node;
+        $this->count--;
+        $return_value = true;
+      }
+      else {
+        $return_value = false;
+      }
+
+      return $return_value;
+    } // end function removeTailNode
+
+
+    /**
+    * function to get the number of nodes present in LinkedList
+    * @returns boolean
+    */
+    public function getLinkedListNodesCount()
+    {
+      return $this->count;
+    }
+
+    /**
+    * function to add a node to head pointer
+    * param integer $node_data_value
+    */
+    public function addNodeToTail($node_data_value)
     {
       if (!(is_int($node_data_value))) {
         return;
@@ -44,12 +120,8 @@
         $this->tail = $new_node;
       }
       else {
-        $temp = $this->head;
-        while ($temp->getNextPointer() != null) {
-          $temp = $temp->getNextPointer();
-        }
-        $temp->setNextPointer($new_node);
-        $new_node->setPreviousPointer($temp);
+        $this->tail->setNextPointer($new_node);
+        $new_node->setPreviousPointer($this->tail);
         $this->tail = $new_node;
       }
       $this->count++;
@@ -57,13 +129,14 @@
 
     /**
     * function to remove a node from a given position
-    * return true or false depending on the sucess of function
-    * value 0 will remove first node, 1 will remove second node and so on...
-    * function will return false if a non integer value is passed
-    * function will return false if a negative value is passed
+    * @parameter integer $node_index_value
+    * @returns boolean
     */
     public function removeNodeByPoistion($node_index_value)
     {
+
+      $return_value = false;
+
       if (!(is_int($node_index_value))) {
         return false;
       }
@@ -74,81 +147,50 @@
       $counter = 0;
 
       if ($node_index_value == 0) { // if condition to remove head pointer
-        $this->head = $this->head->getNextPointer();
-        $this->head->setPreviousPointer(null);
-        $temp->setNextPointer(null);
-        $temp = null;
-        return true;
+        $return_value = $this->removeHeadNode();
       }
       elseif ($node_index_value == ($this->count - 1)) { // if condition to remove tail pointer
-        while ($temp->getNextPointer() != null) {
-          $temp = $temp->getNextPointer();
-        }
-        $temp = $temp->getPreviousPointer();
-        $temp2 = $temp->getNextPointer();
-        $temp2 = null;
-        $temp->setNextPointer(null);
-        return true;
+        $return_value = $this->removeTailNode();
       }
       else { // check if the node to be removed is in the list or not
         $temp_counter = 0;
         while ($temp->getNextPointer() != null) {
           if ($temp_counter == $node_index_value) {
-            $temp_previous_node = $temp->getPreviousPointer();
-            $temp_next_node = $temp->getNextPointer();
-            $temp = null;
-            $temp_previous_node->setNextPointer($temp_next_node);
-            $temp_next_node->setPreviousPointer($temp_previous_node);
-            return true;
+            $return_value = $this->removeInBetweenNode($temp);
           }
           $temp = $temp->getNextPointer();
           $temp_counter++;
         } // end while loop
       } // end else
-      return false;
+      return $return_value;
     } // end function removeNodeByPoistion
 
     /**
     * function to remove a node with a given value
-    * return true or false depending on the sucess of function
-    * function will return false if a non integer value is passed
+    * @parameter integer $node_data_value
+    * @returns boolean
     */
     public function removeNodeByValue($node_data_value)
     {
+
+      $return_value = false;
+
       if (!(is_int($node_data_value))) {
         return false;
       }
 
-      $return_value = false;
       $temp = $this->head;
       while ($temp != null) {
         if ($temp->getData() == $node_data_value) {
           if ($temp->getData() == $this->head->getData()) { // if condition to check if the value to be removed is in head node
-            $temp_next_node = $temp->getNextPointer();
-            $temp = null;
-            $temp_next_node->setPreviousPointer(null);
-            $temp = $temp_next_node;
-            $this->head = $temp;
-            $return_value = true;
+            $return_value = $this->removeHeadNode();
           }
-          elseif ($temp->getData() == $this->tail->getData()) {// if condition to check if the value to be removed is in tail node
-            $temp_previous_node = $temp->getPreviousPointer();
-            $temp = null;
-            $temp_previous_node->setNextPointer(null);
-            $temp = $temp_previous_node;
-            $this->tail = $temp;
-            $return_value = true;
+          elseif (($temp->getData() == $this->tail->getData() && ($temp->getNextPointer() == null))) {// if condition to check if the value to be removed is in tail node
+            $return_value = $this->removeTailNode();
           }
           else { // if the value to be removed is in middle
-            $temp_previous_node = $temp->getPreviousPointer();
-            $temp_next_node = $temp->getNextPointer();
-            $temp_previous_node->setNextPointer($temp_next_node);
-            $temp_next_node->setPreviousPointer($temp_previous_node);
-            $temp = null;
-            $temp = $temp_previous_node;
-            $return_value = true;
+            $return_value = $this->removeInBetweenNode($temp);
           }
-
         }
         $temp = $temp->getNextPointer();
       } // end while loop

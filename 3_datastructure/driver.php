@@ -3,21 +3,22 @@
   require_once 'LinkedList.php';
 
   $linkedlist = new LinkedList;
-  $linkedlist->addNode(2);
-  $linkedlist->addNode(4);
-  $linkedlist->addNode(4);
-  $linkedlist->addNode(9);
-  $linkedlist->addNode(8);
-  $linkedlist->printAllLinkedList();
-  $linkedlist->addNode(9.12);
-  $linkedlist->printAllLinkedList();
+  $linkedlist->addNodeToTail(9);
+  $linkedlist->addNodeToTail(10);
+  $linkedlist->addNodeToTail(12);
+  $linkedlist->addNodeToTail(11);
+  $linkedlist->addNodeToTail(10);
 
-  if ($linkedlist->removeNodeByValue(8)) {
+  $linkedlist->printAllLinkedList();
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+
+  if ($linkedlist->removeNodeByValue(10)) {
     echo 'sucessfully removed' . PHP_EOL;
   }
   else {
     echo 'removal unsucessfull' . PHP_EOL;
   }
   $linkedlist->printAllLinkedList();
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
 
 ?>
