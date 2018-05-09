@@ -8,7 +8,6 @@
   class LinkedList
   {
 
-
     /**
     * head pointer for holding the head of the LinkedList
     * tail pointer for holding the tail of the LinkedList
@@ -166,9 +165,8 @@
         echo $temp->getData() . ' ';
         $temp = $temp->getNextPointer();
       }
-      echo "\n";
+      echo PHP_EOL;
     }
 
   }  //end class Linked_list
-
 ?>
