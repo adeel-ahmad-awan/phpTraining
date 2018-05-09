@@ -12,12 +12,12 @@
   $linkedlist->addNode(9.12);
   $linkedlist->printAllLinkedList();
 
-  // if ($linkedlist->removeNodeByValue(8)) {
-  //   echo 'sucessfully removed' . "\n";
-  // }
-  // else {
-  //   echo 'removal unsucessfull' . "\n";
-  // }
-  // $linkedlist->printAllLinkedList();
+  if ($linkedlist->removeNodeByValue(8)) {
+    echo 'sucessfully removed' . PHP_EOL;
+  }
+  else {
+    echo 'removal unsucessfull' . PHP_EOL;
+  }
+  $linkedlist->printAllLinkedList();
 
 ?>

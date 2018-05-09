@@ -32,6 +32,7 @@
 
     /**
     * function to add a node to head pointer
+    * if passed argument is not integer it will be not inserted and the function will instently return
     */
     public function addNode($node_data_value)
     {
@@ -60,6 +61,7 @@
     * return true or false depending on the sucess of function
     * value 0 will remove first node, 1 will remove second node and so on...
     * function will return false if a non integer value is passed
+    * function will return false if a negative value is passed
     */
     public function removeNodeByPoistion($node_index_value)
     {
