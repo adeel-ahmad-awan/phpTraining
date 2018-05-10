@@ -9,17 +9,17 @@
   {
 
     /**
-    * @variable reference
+    * @var reference
     */
     private $head;
 
     /**
-    * @variable reference
+    * @var reference
     */
     private $tail;
 
     /**
-    * @variable integer
+    * @var integer
     */
     private $count;
 
@@ -36,7 +36,7 @@
 
     /**
     * function to get the number of nodes present in LinkedList
-    * @returns boolean
+    * @return boolean
     */
     public function getLinkedListNodesCount()
     {
@@ -45,7 +45,7 @@
 
     /**
     * function to add a node to head pointer
-    * @parameter integer $data
+    * @param integer $data
     */
     public function addNodeToTail($data)
     {
@@ -67,8 +67,8 @@
 
     /**
     * function to remove a node from a given position
-    * @parameter integer $node_index
-    * @returns boolean
+    * @param integer $node_index
+    * @return boolean
     */
     public function removeNodeByPoistion($node_index)
     {
@@ -100,8 +100,8 @@
 
     /**
     * function to remove a node with a given value
-    * @parameter integer $node_data
-    * @returns boolean
+    * @param integer $node_data
+    * @return boolean
     */
     public function removeNodeByValue($node_data)
     {
@@ -146,7 +146,7 @@
 
     /**
     * function to remove head node
-    * @returns boolean
+    * @return boolean
     */
     private function removeHeadNode()
     {
@@ -164,7 +164,7 @@
 
     /**
     * function to remove tail node
-    * @returns boolean
+    * @return boolean
     */
     private function removeTailNode()
     {
@@ -186,8 +186,8 @@
 
     /**
     * function to remove node between head and tail
-    * @parameter Node $node
-    * @returns boolean
+    * @param Node $node
+    * @return boolean
     */
     private function removeInBetweenNode($node)
     {

@@ -7,17 +7,17 @@
   {
 
     /**
-    * @variable integer
+    * @var integer
     */
     private $data;
 
     /**
-    * @variable reference
+    * @var reference
     */
     private $next;
 
     /**
-    * @variable reference
+    * @var reference
     */
     private $previous;
 
@@ -33,7 +33,7 @@
 
     /**
     * setter function for setting the value of data
-    * @parameter integer $data
+    * @param integer $data
     */
     public function setData($data)
     {
@@ -42,7 +42,7 @@
 
     /**
     * getter function for getting the value of data
-    * @returns integer
+    * @return integer
     */
     public function getData()
     {
@@ -51,7 +51,7 @@
 
     /**
     * setter function for setting the value of "next" variable
-    * @parameter reference $next
+    * @param reference $next
     */
     public function setNextPointer($next)
     {
@@ -60,7 +60,7 @@
 
     /**
     * getter function for getting the value of "next" variable
-    * @returns reference
+    * @return reference
     */
     public function getNextPointer()
     {
@@ -69,7 +69,7 @@
 
     /**
     * setter function for setting the value of "previous" variable
-    * @parameter reference $previous
+    * @param reference $previous
     */
     public function setPreviousPointer($previous)
     {
@@ -78,7 +78,7 @@
 
     /**
     * getter function for getting the value of "previous" variable
-    * @returns reference
+    * @return reference
     */
     public function getPreviousPointer()
     {
