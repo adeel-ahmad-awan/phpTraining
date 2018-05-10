@@ -7,13 +7,18 @@
   {
 
     /**
-    * private variable for node class
-    * data variable for holding the data for linked list. in this case its simple var
-    * next variable for holding the address of the next node in linkedlist
-    * previous variable for holding the address of the previous node in linkedlist
+    * @variable integer
     */
     private $data;
+
+    /**
+    * @variable reference
+    */
     private $next;
+
+    /**
+    * @variable reference
+    */
     private $previous;
 
     /**
@@ -28,6 +33,7 @@
 
     /**
     * setter function for setting the value of data
+    * @parameter integer $data
     */
     public function setData($data)
     {
@@ -36,6 +42,7 @@
 
     /**
     * getter function for getting the value of data
+    * @returns integer
     */
     public function getData()
     {
@@ -44,6 +51,7 @@
 
     /**
     * setter function for setting the value of "next" variable
+    * @parameter reference $next
     */
     public function setNextPointer($next)
     {
@@ -52,6 +60,7 @@
 
     /**
     * getter function for getting the value of "next" variable
+    * @returns reference
     */
     public function getNextPointer()
     {
@@ -60,6 +69,7 @@
 
     /**
     * setter function for setting the value of "previous" variable
+    * @parameter reference $previous
     */
     public function setPreviousPointer($previous)
     {
@@ -68,6 +78,7 @@
 
     /**
     * getter function for getting the value of "previous" variable
+    * @returns reference
     */
     public function getPreviousPointer()
     {

@@ -9,12 +9,18 @@
   {
 
     /**
-    * head pointer for holding the head of the LinkedList
-    * tail pointer for holding the tail of the LinkedList
-    * count variable stores the total number of elements in LinkedList
+    * @variable reference
     */
     private $head;
+
+    /**
+    * @variable reference
+    */
     private $tail;
+
+    /**
+    * @variable integer
+    */
     private $count;
 
    /**
@@ -39,7 +45,7 @@
 
     /**
     * function to add a node to head pointer
-    * parameter integer $data
+    * @parameter integer $data
     */
     public function addNodeToTail($data)
     {
