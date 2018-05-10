@@ -27,74 +27,6 @@
       $this->count = 0;
     }
 
-    /**
-    * function to remove head node
-    * @returns boolean
-    */
-    private function removeHeadNode()
-    {
-      $return_value = false;
-      if ($this->head != null) {
-        $temp = $this->head;
-        $this->head = $this->head->getNextPointer();
-        $this->head->setPreviousPointer(null);
-        $temp->setNextPointer(null);
-        $temp = null;
-        $this->count--;
-        $return_value = true;
-      }
-      return $return_value;
-    } // end function removeHeadNode
-
-    /**
-    * function to remove tail node
-    * @returns boolean
-    */
-    private function removeTailNode()
-    {
-      $return_value = false;
-      if ($this->head == $this->tail) {
-        $this->tail = null;
-        $return_value = true;
-      } elseif ($this->tail != null) {
-        $temp = $this->tail->getPreviousPointer();
-        $temp2 = $temp->getNextPointer();
-        $temp2 = null;
-        $temp->setNextPointer(null);
-        $this->tail = $temp;
-        $this->count--;
-        $return_value = true;
-      }
-      return $return_value;
-    } // end function removeTailNode
-
-
-    /**
-    * function to remove node between head and tail
-    * @parameter Node $temp
-    * @returns boolean
-    */
-    private function removeInBetweenNode(&$temp)
-    {
-      $return_value = false;
-
-      if ($temp->getNextPointer() != null && $temp->getPreviousPointer() != null) {
-        $temp_previous_node = $temp->getPreviousPointer();
-        $temp_next_node = $temp->getNextPointer();
-        $temp = null;
-        $temp_previous_node->setNextPointer($temp_next_node);
-        $temp_next_node->setPreviousPointer($temp_previous_node);
-        $temp = $temp_previous_node;
-        $this->count--;
-        $return_value = true;
-      }
-      else {
-        $return_value = false;
-      }
-
-      return $return_value;
-    } // end function removeTailNode
-
 
     /**
     * function to get the number of nodes present in LinkedList
@@ -129,37 +61,32 @@
 
     /**
     * function to remove a node from a given position
-    * @parameter integer $node_index_value
+    * @parameter integer $node_index
     * @returns boolean
     */
-    public function removeNodeByPoistion($node_index_value)
+    public function removeNodeByPoistion($node_index)
     {
 
       $return_value = false;
 
-      if (!(is_int($node_index_value))) {
+      if ((!(is_int($node_index))) || ($node_index < 0) ) {
         return false;
       }
-      if ($node_index_value < 0) {
-        return false;
-      }
-      $temp = $this->head;
-      $counter = 0;
 
-      if ($node_index_value == 0) { // if condition to remove head pointer
+      $temp = $this->head;
+      if ($node_index == 0) { // if condition to remove head pointer
         $return_value = $this->removeHeadNode();
-      }
-      elseif ($node_index_value == ($this->count - 1)) { // if condition to remove tail pointer
+      } elseif ($node_index == ($this->count - 1)) { // if condition to remove tail pointer
         $return_value = $this->removeTailNode();
-      }
-      else { // check if the node to be removed is in the list or not
-        $temp_counter = 0;
-        while ($temp->getNextPointer() != null) {
-          if ($temp_counter == $node_index_value) {
+      } else { // check if the node to be removed is in the list or not
+        $counter = 0;
+        $temp = $this->head->getNextPointer();
+        while ($temp->getNextPointer() != $this->tail) {
+          if ($counter == $node_index) {
             $return_value = $this->removeInBetweenNode($temp);
           }
           $temp = $temp->getNextPointer();
-          $temp_counter++;
+          $counter++;
         } // end while loop
       } // end else
       return $return_value;
@@ -167,25 +94,25 @@
 
     /**
     * function to remove a node with a given value
-    * @parameter integer $node_data_value
+    * @parameter integer $node_data
     * @returns boolean
     */
-    public function removeNodeByValue($node_data_value)
+    public function removeNodeByValue($node_data)
     {
 
       $return_value = false;
 
-      if (!(is_int($node_data_value))) {
+      if (!(is_int($node_data))) {
         return false;
       }
 
       $temp = $this->head;
       while ($temp != null) {
-        if ($temp->getData() == $node_data_value) {
-          if ($temp->getData() == $this->head->getData()) { // if condition to check if the value to be removed is in head node
+        if ($temp->getData() == $node_data) {
+          if ($temp->getData() == $this->head->getData()) { // condition to check if the value to be removed is in head node
             $return_value = $this->removeHeadNode();
           }
-          elseif (($temp->getData() == $this->tail->getData() && ($temp->getNextPointer() == null))) {// if condition to check if the value to be removed is in tail node
+          elseif (($temp->getData() == $this->tail->getData() && ($temp->getNextPointer() == null))) {// condition to check if the value to be removed is in tail node
             $return_value = $this->removeTailNode();
           }
           else { // if the value to be removed is in middle
@@ -198,17 +125,81 @@
     } // end function removeNodeByValue
 
     /**
-    * function to print all linkedlist node data values starting from head
+    * function to print all linkedlist node data starting from head
     */
     public function printAllLinkedList()
     {
       $temp = $this->head;
       while ($temp != null) {
-        echo $temp->getData() . ' ';
+        echo $temp->getData() . ', ';
         $temp = $temp->getNextPointer();
       }
       echo PHP_EOL;
     }
+
+
+    /**
+    * function to remove head node
+    * @returns boolean
+    */
+    private function removeHeadNode()
+    {
+      $return_value = false;
+      if ($this->head != null) {
+        $old_head = $this->head;
+        $this->head = $this->head->getNextPointer();
+        $this->head->setPreviousPointer(null);
+        $old_head = null;
+        $this->count--;
+        $return_value = true;
+      }
+      return $return_value;
+    }
+
+    /**
+    * function to remove tail node
+    * @returns boolean
+    */
+    private function removeTailNode()
+    {
+      $return_value = false;
+      if ($this->head == $this->tail) {
+        $this->tail = null;
+        $return_value = true;
+      } elseif ($this->tail != null) {
+        $new_tail = $this->tail->getPreviousPointer();
+        $old_tail = $new_tail->getNextPointer();
+        $old_tail = null;
+        $new_tail->setNextPointer(null);
+        $this->tail = $new_tail;
+        $this->count--;
+        $return_value = true;
+      }
+      return $return_value;
+    }
+
+    /**
+    * function to remove node between head and tail
+    * @parameter Node $node
+    * @returns boolean
+    */
+    private function removeInBetweenNode($node)
+    {
+      $return_value = false;
+
+      if ($node->getNextPointer() != null && $node->getPreviousPointer() != null) {
+        $previous_node = $node->getPreviousPointer();
+        $next_node = $node->getNextPointer();
+        $node = null;
+        $previous_node->setNextPointer($next_node);
+        $next_node->setPreviousPointer($previous_node);
+        $node = $previous_node;
+        $this->count--;
+        $return_value = true;
+      }
+      return $return_value;
+    }
+
 
   }  //end class Linked_list
 ?>

@@ -18,9 +18,6 @@
 
     /**
     * constructor function for value itialization.
-    * takes one argument for setting data variable
-    * by default data variable holds "not_assigned" value
-    * by default the next and previous pointers are set to "null"
     */
     function __construct($data = 'not_assigned')
     {

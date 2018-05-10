@@ -17,7 +17,7 @@
   $linkedlist->addNodeToTail(43);
 
 
-  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
   $linkedlist->printAllLinkedList();
 
   echo 'removing 10 node by value' . PHP_EOL;
@@ -28,7 +28,7 @@
     echo 'removal unsucessfull' . PHP_EOL;
   }
 
-  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
   $linkedlist->printAllLinkedList();
 
 
@@ -40,7 +40,7 @@
     echo 'removal unsucessfull' . PHP_EOL;
   }
 
-  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
   $linkedlist->printAllLinkedList();
 
   echo 'removing 99 node by value' . PHP_EOL;
@@ -51,7 +51,7 @@
     echo 'removal unsucessfull' . PHP_EOL;
   }
 
-  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
   $linkedlist->printAllLinkedList();
 
   echo 'removing 0 node by position' . PHP_EOL;
@@ -62,7 +62,7 @@
     echo 'removal unsucessfull' . PHP_EOL;
   }
 
-  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
   $linkedlist->printAllLinkedList();
 
 
@@ -74,7 +74,19 @@
     echo 'removal unsucessfull' . PHP_EOL;
   }
 
-  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . PHP_EOL;
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
+  $linkedlist->printAllLinkedList();
+
+
+  echo 'removing -4 node by position' . PHP_EOL;
+  if ($linkedlist->removeNodeByPoistion(-4)) {
+    echo 'sucessfully removed' . PHP_EOL;
+  }
+  else {
+    echo 'removal unsucessfull' . PHP_EOL;
+  }
+
+  echo 'Node count = ' . $linkedlist->getLinkedListNodesCount() . ' ->  ';
   $linkedlist->printAllLinkedList();
 
 
