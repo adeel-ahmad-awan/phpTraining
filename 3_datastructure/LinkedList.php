@@ -39,14 +39,14 @@
 
     /**
     * function to add a node to head pointer
-    * param integer $node_data_value
+    * parameter integer $data
     */
-    public function addNodeToTail($node_data_value)
+    public function addNodeToTail($data)
     {
-      if (!(is_int($node_data_value))) {
+      if (!(is_int($data))) {
         return;
       }
-      $new_node = new Node($node_data_value);
+      $new_node = new Node($data);
       if ($this->head == null && $this->count == 0) {
         $this->head = $new_node;
         $this->tail = $new_node;
