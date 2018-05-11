@@ -81,7 +81,7 @@
   }
 
   /**
-  * function to validate phone number address
+  * function to validate phone number
   * @param integer $phone_number
   * @return boolean
   */
@@ -91,7 +91,7 @@
   }
 
   /**
-  * function to validate phone number address
+  * function to write result data to "result.txt" file
   */
   function writeUserDataToFile()
   {
