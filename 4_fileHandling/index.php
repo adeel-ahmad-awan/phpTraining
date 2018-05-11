@@ -10,14 +10,10 @@
     $return_value = false;
     try {
       $file = fopen($filename, "r");
-      if (!$file) {
-        $return_value = false;
-        throw new Exception('Input file open failed.');
-      }
       $output_file = fopen("result.txt", "w");
-      if (!$output_file) {
+      if (!$file || !$output_file) {
         $return_value = false;
-        throw new Exception('Output file open failed.');
+        throw new Exception('file failedto  open.');
       }
       echo 'file opened successfully' . PHP_EOL;
       while (!feof($file)) {
@@ -26,7 +22,7 @@
 
         if (validatesStringData($user_data)) {
           $user_data = swapValues($user_data, 1, 2);
-          $user_data = swapValues($user_data, 3, 'asd');
+          $user_data = swapValues($user_data, 3, 4);
           array_push($user_data, PHP_EOL);
           writeUserDataToFile($user_data,$output_file);
         }
@@ -86,16 +82,14 @@
 
   /**
   * function to swap 2 values
-  * @param integer $value1
-  * @param integer $value2
+  * @param integer $index1
+  * @param integer $index2
   */
-  function swapValues($user_data, $value1, $value2)
+  function swapValues($user_data, $index1, $index2)
   {
-    $val1 = (int)$value1;
-    $val2 = (int)$value2;
-    $temp = $user_data[$val1];
-    $user_data[$val1] = $user_data[$val2];
-    $user_data[$val2] = $temp;
+    $temp = $user_data[$index1];
+    $user_data[$index1] = $user_data[$index2];
+    $user_data[$index2] = $temp;
     return $user_data;
   }
 
