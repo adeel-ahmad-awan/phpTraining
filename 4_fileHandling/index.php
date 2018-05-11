@@ -1,11 +1,6 @@
 <?php
 
   /**
-  * array to hold the data to be written in new file
-  */
-  $user_data_array = array();
-
-  /**
   * function to read file
   * @param string $filename
   * @return boolean
@@ -13,58 +8,48 @@
   function readDataFile($filename)
   {
     $return_value = false;
-
-    if ((is_string($filename))) {
-      echo "string";
-
-
-      $return_value = true;
-
-      try {
-        $myfile = fopen($filename, "r");
-        if (!$myfile) {
-          $return_value = false;
-          throw new Exception('File open failed.');
-        }
-
-        echo 'file opened successfully' . PHP_EOL;
-        global $user_data_array;
-
-        while (!feof($myfile)) {
-          $user_data = explode(",", fgets($myfile));
-          $user_data = str_replace(array("\n", "\r"), '', $user_data);
-
-          if (validatesStringData($user_data)) {
-            echo 'match found. Pushing it into result set' . PHP_EOL;
-            $temp = $user_data[1];
-            $user_data[1] = $user_data[2];
-            $user_data[2] = $temp;
-            $temp = $user_data[3];
-            $user_data[3] = $user_data[4];
-            $user_data[4] = $temp;
-            array_push($user_data, PHP_EOL);
-            array_push($user_data_array, implode(", ", $user_data));
-          }
-        }
-        fclose($myfile);
-      } catch (Exception $e) {
-          echo 'Message: ' .$e->getMessage();
+    try {
+      $file = fopen($filename, "r");
+      if (!$file) {
+        $return_value = false;
+        throw new Exception('Input file open failed.');
       }
+      $output_file = fopen("result.txt", "w");
+      if (!$output_file) {
+        $return_value = false;
+        throw new Exception('Output file open failed.');
+      }
+      echo 'file opened successfully' . PHP_EOL;
+      while (!feof($file)) {
+        $user_data = explode(",", fgets($file));
+        $user_data = str_replace(array("\n", "\r"), '', $user_data);
+
+        if (validatesStringData($user_data)) {
+          $user_data = swapValues($user_data, 1, 2);
+          $user_data = swapValues($user_data, 3, 'asd');
+          array_push($user_data, PHP_EOL);
+          writeUserDataToFile($user_data,$output_file);
+        }
+        $return_value = true;
+      }
+    } catch (Exception $e) {
+      echo 'Message: ' .$e->getMessage();
+    } finally {
+      fclose($file);
+      fclose($output_file);
     }
     return $return_value;
-
   } // end function readDataFile
-
 
   /**
   * function to validate the uesr data
-  * @param string $data
+  * @param string $user_data
   * @return boolean
   */
   function validatesStringData($user_data)
   {
       $return_value = false;
-      if (validateEmailAddress(@$user_data[1]) && validatePhoneNumber(@$user_data[4])) {
+      if (validateEmailAddress($user_data[1]) && validatePhoneNumber($user_data[4])) {
           $return_value = true;
       }
       return $return_value;
@@ -93,23 +78,25 @@
   /**
   * function to write result data to "result.txt" file
   */
-  function writeUserDataToFile()
+  function writeUserDataToFile($user_data,$output_file)
   {
-      global $user_data_array;
-      $myfile = fopen("result.txt", "w");
-
-      if ($myfile) {
-        $txt = implode("", $user_data_array);
-        fwrite($myfile, $txt);
-        echo 'wtiting results to output file "result.txt"' . PHP_EOL;
-        fclose($myfile);
-      }
-      else {
-        echo 'cannot write to new file';
-      }
-
+    fwrite($output_file, implode(", ", $user_data));
+    echo 'wtiting results to output file "result.txt"' . PHP_EOL;
   }
 
-  if (readDataFile('data.csv')) {
-    writeUserDataToFile();
+  /**
+  * function to swap 2 values
+  * @param integer $value1
+  * @param integer $value2
+  */
+  function swapValues($user_data, $value1, $value2)
+  {
+    $val1 = (int)$value1;
+    $val2 = (int)$value2;
+    $temp = $user_data[$val1];
+    $user_data[$val1] = $user_data[$val2];
+    $user_data[$val2] = $temp;
+    return $user_data;
   }
+
+  readDataFile('data.csv');
