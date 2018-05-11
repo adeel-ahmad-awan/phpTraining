@@ -96,11 +96,18 @@
   function writeUserDataToFile()
   {
       global $user_data_array;
-      $myfile = fopen("result.txt", "w") or die("Unable to open file!");
-      $txt = implode("", $user_data_array);
-      fwrite($myfile, $txt);
-      echo 'wtiting results to output file "result.txt"' . PHP_EOL;
-      fclose($myfile);
+      $myfile = fopen("result.txt", "w");
+
+      if ($myfile) {
+        $txt = implode("", $user_data_array);
+        fwrite($myfile, $txt);
+        echo 'wtiting results to output file "result.txt"' . PHP_EOL;
+        fclose($myfile);
+      }
+      else {
+        echo 'cannot write to new file';
+      }
+
   }
 
   if (readDataFile('data.csv')) {
